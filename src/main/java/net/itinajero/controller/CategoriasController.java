@@ -3,6 +3,8 @@ package net.itinajero.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,18 @@ public class CategoriasController {
     	model.addAttribute("categorias", lista);
 		return "categorias/listCategorias";		
 	}
+	
+	
+	@GetMapping(value = "/indexPaginate")
+	public String mostrarIndexPaginado(Model model, Pageable page) {
+	Page<Categoria> lista = serviceCategorias.buscarTodas(page);
+	model.addAttribute("categorias", lista);
+	return "categorias/listCategorias";
+	}
+
+	
+	
+	
 	
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String crear(Categoria categoria) {
