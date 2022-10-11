@@ -9,4 +9,7 @@ public interface IVacantesService {
 	
 	void guardar(Vacante vacante);
 	
+	List<Vacante> buscarDestacadas();
+	
+	void eliminar(Integer idVacante);
 }
