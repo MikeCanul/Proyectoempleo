@@ -11,23 +11,24 @@ import net.itinajero.model.Vacante;
 import net.itinajero.repository.VacantesRepository;
 import net.itinajero.service.IVacantesService;
 
+
 @Service
 @Primary
 public class VacantesServiceJpa implements IVacantesService {
 
 	@Autowired
-	private VacantesRepository vacantesRepo;
+	private VacantesRepository vacantesRepo; 
+	
 	
 	@Override
 	public List<Vacante> buscarTodas() {
 		
-		// TODO Auto-generated method stub
 		return vacantesRepo.findAll();
 	}
 
 	@Override
-	public Vacante buscarPorid(Integer idVacante) {
-		// TODO Auto-generated method stub
+	public Vacante buscarPorId(Integer idVacante) {
+		
 		Optional<Vacante> optional = vacantesRepo.findById(idVacante);
 		if(optional.isPresent()) {
 			return optional.get();
@@ -37,12 +38,13 @@ public class VacantesServiceJpa implements IVacantesService {
 
 	@Override
 	public void guardar(Vacante vacante) {
-		// TODO Auto-generated method stub
 		vacantesRepo.save(vacante);
+
 	}
 
-	
+	@Override
 	public List<Vacante> buscarDestacadas() {
+		// TODO Auto-generated method stub
 		return vacantesRepo.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
 	}
 
@@ -50,6 +52,7 @@ public class VacantesServiceJpa implements IVacantesService {
 	public void eliminar(Integer idVacante) {
 		// TODO Auto-generated method stub
 		vacantesRepo.deleteById(idVacante);
+		
 	}
 
 }
