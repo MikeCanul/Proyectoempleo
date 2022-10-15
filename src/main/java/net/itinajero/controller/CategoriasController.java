@@ -86,7 +86,7 @@ public class CategoriasController {
 		return "redirect:/categorias/index";
 		
 	}
-	
+		
 	
 	
 	
